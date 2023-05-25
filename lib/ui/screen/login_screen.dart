@@ -1,35 +1,74 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:using_riverpod_todo_app/providers/firebase_auth_provider.dart';
 
-class LoginScreen extends StatelessWidget {
+final emailControllerProvider =
+    Provider.autoDispose<TextEditingController>((ref) {
+  return TextEditingController();
+});
+
+final passwordControllerProvider =
+    Provider.autoDispose<TextEditingController>((ref) {
+  return TextEditingController();
+});
+
+class LoginScreen extends HookConsumerWidget {
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final emailController = ref.watch(emailControllerProvider);
+    final passwordController = ref.watch(passwordControllerProvider);
+    final key = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
       ),
       body: Form(
+        key: key,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'メールアドレスを入力してください';
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   icon: Icon(Icons.email),
                 ),
+                controller: emailController,
               ),
               const SizedBox(height: 8.0),
               TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'パスワードを入力してください';
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration(
                   labelText: 'Password',
                   icon: Icon(Icons.lock),
                 ),
+                controller: passwordController,
               ),
               const SizedBox(height: 8.0),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  if (key.currentState!.validate()) {
+                    await ref
+                        .read(firebaseAuthProvider)
+                        .signInWithEmailAndPassword(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );
+                  }
+                },
                 child: const Text('Login'),
               ),
             ],
