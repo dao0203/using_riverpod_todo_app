@@ -86,12 +86,21 @@ class LoginScreen extends HookConsumerWidget {
                 child: const Text('Sign in'),
               ),
               ElevatedButton(
-                
-                onPressed: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    "/todo_list",
-                    (_) => false,
-                  );
+                onPressed: () async {
+                  if (key.currentState!.validate()) {
+                    await ref
+                        .read(firebaseAuthProvider)
+                        .createUserWithEmailAndPassword(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        )
+                        .then(
+                          (_) => Navigator.of(context).pushNamedAndRemoveUntil(
+                            '/todo_list',
+                            (_) => false,
+                          ),
+                        );
+                  }
                 },
                 child: const Text('Sign up'),
               ),
