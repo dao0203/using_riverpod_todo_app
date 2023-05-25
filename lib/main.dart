@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:using_riverpod_todo_app/firebase_options.dart';
-import 'package:using_riverpod_todo_app/ui/screen/login_screen.dart';
+import 'package:using_riverpod_todo_app/ui/screen/auth_gate.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginScreen(),
+      home: const AuthGate(null),
     );
   }
 }
