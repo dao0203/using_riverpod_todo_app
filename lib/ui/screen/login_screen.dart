@@ -60,16 +60,40 @@ class LoginScreen extends HookConsumerWidget {
               const SizedBox(height: 8.0),
               ElevatedButton(
                 onPressed: () async {
+                  // インディケーターを表示
+                  showDialog(
+                    context: context,
+                    builder: (_) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
                   if (key.currentState!.validate()) {
+                    //新規登録処理
                     await ref
                         .read(firebaseAuthProvider)
                         .signInWithEmailAndPassword(
                           email: emailController.text,
                           password: passwordController.text,
+                        )
+                        .then(
+                          (_) => Navigator.of(context).pushNamedAndRemoveUntil(
+                            '/todo_list',
+                            (_) => false,
+                          ),
                         );
                   }
                 },
-                child: const Text('Login'),
+                child: const Text('Sign in'),
+              ),
+              ElevatedButton(
+                
+                onPressed: () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    "/todo_list",
+                    (_) => false,
+                  );
+                },
+                child: const Text('Sign up'),
               ),
             ],
           ),
