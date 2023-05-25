@@ -13,7 +13,7 @@ class AuthGate extends ConsumerWidget {
     return ref.watch(authStateChangesProvider).when(
           data: (user) {
             if (user == null) {
-              return const LoginScreen();
+              return LoginScreen();
             } else {
               return const TodoListScreen();
             }
