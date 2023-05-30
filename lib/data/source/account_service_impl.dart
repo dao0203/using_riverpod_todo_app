@@ -9,10 +9,7 @@ class accountSourceImpl extends AccountService {
   final FirebaseFirestore _firestore;
   accountSourceImpl(this._auth, this._firestore);
   @override
-  Future<String> getUser() {
-    // TODO: implement getUser
-    throw UnimplementedError();
-  }
+  User getUser() => _auth.currentUser!;
 
   @override
   Stream<void> isSignedIn() => _auth.authStateChanges();
