@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:using_riverpod_todo_app/providers/firebase_auth_provider.dart';
-
-final emailControllerProvider =
-    Provider.autoDispose<TextEditingController>((ref) {
-  return TextEditingController();
-});
-
-final passwordControllerProvider =
-    Provider.autoDispose<TextEditingController>((ref) {
-  return TextEditingController();
-});
 
 class LoginScreen extends HookConsumerWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final emailController = ref.watch(emailControllerProvider);
-    final passwordController = ref.watch(passwordControllerProvider);
+    final emailController = useTextEditingController();
+    final passwordController = useTextEditingController();  
     final key = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
