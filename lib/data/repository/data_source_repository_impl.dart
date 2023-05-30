@@ -1,11 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:using_riverpod_todo_app/data/source/account_service.dart';
+
 import 'data_source_repository.dart';
 
 class DataSourceRepositoryImpl extends DataSourceRepository {
+  AccountService _accountService;
+  DataSourceRepositoryImpl(this._accountService);
   @override
-  Future<String> getUser() {
-    // TODO: implement getUser
-    throw UnimplementedError();
-  }
+  User getUser() => _accountService.getUser();
 
   @override
   Future<bool> isSignedIn() {
