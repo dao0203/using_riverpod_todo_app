@@ -4,10 +4,10 @@ import 'package:using_riverpod_todo_app/providers/auth_state_provider.dart';
 
 import 'account_service.dart';
 
-class accountSourceImpl extends AccountService {
+class AccountSourceImpl extends AccountService {
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
-  accountSourceImpl(this._auth, this._firestore);
+  AccountSourceImpl(this._auth, this._firestore);
   @override
   User getUser() => _auth.currentUser!;
 
