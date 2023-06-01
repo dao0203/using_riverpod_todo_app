@@ -10,27 +10,16 @@ class DataSourceRepositoryImpl extends DataSourceRepository {
   User getUser() => _accountService.getUser();
 
   @override
-  Future<bool> isSignedIn() {
-    // TODO: implement isSignedIn
-    throw UnimplementedError();
-  }
+  Stream<void> isSignedIn() => _accountService.isSignedIn();
 
   @override
-  Future<String> signIn(String email, String password) {
-    // TODO: implement signIn
-    throw UnimplementedError();
-  }
+  Future<void> signIn(String email, String password) =>
+      _accountService.signIn(email, password);
 
   @override
-  Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
-  }
+  Future<void> signOut() => _accountService.signOut();
 
   @override
-  Future<String> signUp(String email, String password) {
-    // TODO: implement signUp
-    throw UnimplementedError();
-  }
-  
+  Future<void> signUp(String email, String password, String githubId) =>
+      _accountService.signUp(email, password, githubId);
 }
