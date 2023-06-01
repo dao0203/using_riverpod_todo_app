@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:using_riverpod_todo_app/providers/firebase_auth_provider.dart';
+import '../../providers.dart';
 
 class LoginScreen extends HookConsumerWidget {
   const LoginScreen({super.key});
@@ -9,7 +9,7 @@ class LoginScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final emailController = useTextEditingController();
-    final passwordController = useTextEditingController();  
+    final passwordController = useTextEditingController();
     final key = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(

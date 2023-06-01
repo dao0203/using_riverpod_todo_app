@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:using_riverpod_todo_app/providers/auth_state_provider.dart';
-
+import '../../providers.dart';
 import 'login_screen.dart';
 import 'todo_list_screen.dart';
 
