@@ -1,31 +1,15 @@
 
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-@immutable
-class Todo {
-  const Todo({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.isCompleted,
-  });
+part 'todo.freezed.dart';
 
-  final String id;
-  final String title;
-  final String description;
-  final bool isCompleted;
-
-  Todo copyWith({
-    String? id,
-    String? title,
-    String? description,
-    bool? isCompleted,
-  }) {
-    return Todo(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      description: description ?? this.description,
-      isCompleted: isCompleted ?? this.isCompleted,
-    );
-  }
+@freezed
+abstract class Todo with _$Todo {
+  const factory Todo({
+    required String id,
+    required String title,
+    required String description,
+    required bool completed,
+  }) = _Todo;
 }
