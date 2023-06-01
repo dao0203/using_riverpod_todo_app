@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class DataSourceRepository {
   //Firebase Authentification
-  Future<String> signIn(String email, String password);
-  Future<String> signUp(String email, String password);
+  Future<void> signIn(String email, String password);
+  Future<void> signUp(String email, String password, String githubId);
   Future<void> signOut();
-  Future<bool> isSignedIn();
+  Stream<void> isSignedIn();
   User getUser();
 }
