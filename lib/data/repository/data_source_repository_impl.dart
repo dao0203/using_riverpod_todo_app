@@ -10,7 +10,7 @@ class DataSourceRepositoryImpl extends DataSourceRepository {
   User getUser() => _accountService.getUser();
 
   @override
-  Stream<void> isSignedIn() => _accountService.isSignedIn();
+  Stream<User?> isSignedIn() => _accountService.isSignedIn();
 
   @override
   Future<void> signIn(String email, String password) =>
