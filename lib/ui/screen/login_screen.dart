@@ -12,6 +12,7 @@ class LoginScreen extends HookConsumerWidget {
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
     final loginKey = GlobalKey<FormState>();
+    final errorText = useState('');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
@@ -75,16 +76,18 @@ class LoginScreen extends HookConsumerWidget {
                             '/todo_list',
                             (_) => false,
                           ),
+                        ).onError((error, stackTrace) => 
+                          errorText.value = error.toString()
                         );
                   }
                 },
-                child: const Text('Sign in'),
+                child: const Text('ログイン'),
               ),
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed('/login/register');
                 },
-                child: const Text('Sign up'),
+                child: const Text('新規登録画面へ'),
               ),
             ],
           ),
