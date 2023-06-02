@@ -3,6 +3,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../utils/const.dart';
+
 class RegisterScreen extends HookConsumerWidget {
   RegisterScreen({super.key});
   final emailController = useTextEditingController();
@@ -17,9 +19,14 @@ class RegisterScreen extends HookConsumerWidget {
         title: const Text("新規登録"),
       ),
       body: Form(
-        key: key,
-        child: Column(
-          children: [],
+        key: registerKey,
+        child: Padding(
+          padding: padding8,
+          child: Column(
+            children: [
+              
+            ],
+          ),
         ),
       ),
     );

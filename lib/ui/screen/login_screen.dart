@@ -19,7 +19,7 @@ class LoginScreen extends HookConsumerWidget {
       body: Form(
         key: loginKey,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: padding8,
           child: Column(
             children: [
               brank16,
