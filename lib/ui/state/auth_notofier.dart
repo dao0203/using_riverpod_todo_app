@@ -5,7 +5,9 @@ import '../../data/repository/data_source_repository.dart';
 
 class AuthNotifier extends StateNotifier<User?> {
   AuthNotifier(this._auth) : super(null) {
-    _auth.getUser();
+    _auth.isSignedIn().listen((user) {
+      state = user;
+    });
   }
 
   final DataSourceRepository _auth;
