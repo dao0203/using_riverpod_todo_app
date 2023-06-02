@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:using_riverpod_todo_app/utils/const.dart';
 import '../../providers.dart';
 
 class LoginScreen extends HookConsumerWidget {
@@ -34,7 +35,7 @@ class LoginScreen extends HookConsumerWidget {
                 ),
                 controller: emailController,
               ),
-              const SizedBox(height: 8.0),
+              brank8,
               TextFormField(
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -48,7 +49,7 @@ class LoginScreen extends HookConsumerWidget {
                 ),
                 controller: passwordController,
               ),
-              const SizedBox(height: 8.0),
+              brank8,
               ElevatedButton(
                 onPressed: () async {
                   // インディケーターを表示
@@ -79,18 +80,15 @@ class LoginScreen extends HookConsumerWidget {
               ElevatedButton(
                 onPressed: () async {
                   if (key.currentState!.validate()) {
-                    await ref
-                        .read(firebaseAuthProvider)
-                        .createUserWithEmailAndPassword(
-                          email: emailController.text,
-                          password: passwordController.text,
-                        )
-                        .then(
-                          (_) => Navigator.of(context).pushNamedAndRemoveUntil(
-                            '/todo_list',
-                            (_) => false,
-                          ),
-                        );
+                    //新規登録処理
+                    // await ref
+                    //     .read(authStateProvider.notifier).signUp(email, password, githubId)
+                    //     .then(
+                    //       (_) => Navigator.of(context).pushNamedAndRemoveUntil(
+                    //         '/todo_list',
+                    //         (_) => false,
+                    //       ),
+                    //     );
                   }
                 },
                 child: const Text('Sign up'),
