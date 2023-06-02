@@ -11,13 +11,13 @@ class LoginScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
-    final key = GlobalKey<FormState>();
+    final loginKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
       ),
       body: Form(
-        key: key,
+        key: loginKey,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -62,7 +62,7 @@ class LoginScreen extends HookConsumerWidget {
                       child: CircularProgressIndicator(),
                     ),
                   );
-                  if (key.currentState!.validate()) {
+                  if (loginKey.currentState!.validate()) {
                     //新規登録処理
                     await ref
                         .read(firebaseAuthProvider)
@@ -82,7 +82,7 @@ class LoginScreen extends HookConsumerWidget {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  if (key.currentState!.validate()) {
+                  if (loginKey.currentState!.validate()) {
                     //新規登録処理
                     // await ref
                     //     .read(authStateProvider.notifier).signUp(email, password, githubId)

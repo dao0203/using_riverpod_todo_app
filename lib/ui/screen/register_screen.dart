@@ -8,7 +8,7 @@ class RegisterScreen extends HookConsumerWidget {
   final emailController = useTextEditingController();
   final passwordController = useTextEditingController();
   final githubIdController = useTextEditingController();
-  final key = GlobalKey<FormState>();
+  final registerKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,6 +17,7 @@ class RegisterScreen extends HookConsumerWidget {
         title: const Text("新規登録"),
       ),
       body: Form(
+        key: key,
         child: Column(
           children: [],
         ),
