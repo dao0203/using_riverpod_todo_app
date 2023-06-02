@@ -5,12 +5,14 @@ import '../../data/repository/data_source_repository.dart';
 
 class AuthNotifier extends StateNotifier<User?> {
   AuthNotifier(this._auth) : super(null) {
-    isSignedIn().listen((user) {
-      state = user;
-    });
+    _auth.getUser();
   }
 
   final DataSourceRepository _auth;
+
+  User getUser() {
+    return _auth.getUser();
+  }
 
   Stream<User?> isSignedIn() {
     return _auth.isSignedIn();
@@ -26,9 +28,5 @@ class AuthNotifier extends StateNotifier<User?> {
 
   Future<void> signOut() async {
     await _auth.signOut();
-  }
-
-  User getUser() {
-    return _auth.getUser();
   }
 }
