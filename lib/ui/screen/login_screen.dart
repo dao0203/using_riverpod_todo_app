@@ -81,18 +81,8 @@ class LoginScreen extends HookConsumerWidget {
                 child: const Text('Sign in'),
               ),
               ElevatedButton(
-                onPressed: () async {
-                  if (loginKey.currentState!.validate()) {
-                    //新規登録処理
-                    // await ref
-                    //     .read(authStateProvider.notifier).signUp(email, password, githubId)
-                    //     .then(
-                    //       (_) => Navigator.of(context).pushNamedAndRemoveUntil(
-                    //         '/todo_list',
-                    //         (_) => false,
-                    //       ),
-                    //     );
-                  }
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/login/register');
                 },
                 child: const Text('Sign up'),
               ),
