@@ -16,7 +16,17 @@ class RegisterScreen extends HookConsumerWidget {
     final registerKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("新規登録"),
+        //バックボタンにカラーをつける
+        iconTheme: IconThemeData(
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Text(
+          "新規登録",
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+        ),
       ),
       body: Form(
         key: registerKey,
@@ -85,7 +95,17 @@ class RegisterScreen extends HookConsumerWidget {
                 controller: githubIdController,
               ),
               brank8,
-              ElevatedButton(
+              ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                ),
+                icon: Icon(Icons.login,
+                    color: Theme.of(context).colorScheme.onPrimary),
+                label: Text(
+                  "新規登録",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                ),
                 onPressed: () async {
                   // インディケーターを表示
                   showDialog(
@@ -107,7 +127,7 @@ class RegisterScreen extends HookConsumerWidget {
                           githubIdController.text,
                         )
                         .then((_) {
-                      // 登録完了後、ログイン画面に戻る
+                      // 登録完了後、TodoList画面へ遷移
                       Navigator.of(context).pushNamedAndRemoveUntil(
                         "todo_list",
                         (_) => false,
@@ -115,7 +135,6 @@ class RegisterScreen extends HookConsumerWidget {
                     });
                   }
                 },
-                child: const Text("登録"),
               ),
             ],
           ),
