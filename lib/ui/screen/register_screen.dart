@@ -28,115 +28,117 @@ class RegisterScreen extends HookConsumerWidget {
           ),
         ),
       ),
-      body: Form(
-        key: registerKey,
-        child: Padding(
-          padding: padding8,
-          child: Column(
-            children: [
-              brank16,
-              const Text("新規登録"),
-              brank16,
-              TextFormField(
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'メールアドレスを入力してください';
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  icon: Icon(Icons.email),
+      body: SingleChildScrollView(
+        child: Form(
+          key: registerKey,
+          child: Padding(
+            padding: padding8,
+            child: Column(
+              children: [
+                brank16,
+                const Text("新規登録"),
+                brank16,
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'メールアドレスを入力してください';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                    icon: Icon(Icons.email),
+                  ),
+                  controller: emailController,
                 ),
-                controller: emailController,
-              ),
-              brank8,
-              TextFormField(
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'パスワードを入力してください';
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                  icon: Icon(Icons.lock),
+                brank8,
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'パスワードを入力してください';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Password',
+                    icon: Icon(Icons.lock),
+                  ),
+                  controller: passwordController,
                 ),
-                controller: passwordController,
-              ),
-              brank8,
-              TextFormField(
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'パスワードを入力してください';
-                  } else if (value != passwordController.text) {
-                    return 'パスワードが一致しません';
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Password(確認用)',
-                  icon: Icon(Icons.lock),
+                brank8,
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'パスワードを入力してください';
+                    } else if (value != passwordController.text) {
+                      return 'パスワードが一致しません';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Password(確認用)',
+                    icon: Icon(Icons.lock),
+                  ),
+                  controller: confirmPasswordController,
                 ),
-                controller: confirmPasswordController,
-              ),
-              brank8,
-              TextFormField(
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Github IDを入力してください';
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Github ID',
-                  icon: Icon(Icons.lock),
+                brank8,
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Github IDを入力してください';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Github ID',
+                    icon: Icon(Icons.lock),
+                  ),
+                  controller: githubIdController,
                 ),
-                controller: githubIdController,
-              ),
-              brank8,
-              ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
+                brank8,
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                  ),
+                  icon: Icon(Icons.login,
+                      color: Theme.of(context).colorScheme.onPrimary),
+                  label: Text(
+                    "新規登録",
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary),
+                  ),
+                  onPressed: () async {
+                    // インディケーターを表示
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    );
+                    // バリデーションチェック
+                    if (registerKey.currentState!.validate()) {
+                      // 登録処理
+                      await ref
+                          .read(authStateProvider.notifier)
+                          .signUp(
+                            emailController.text,
+                            passwordController.text,
+                            githubIdController.text,
+                          )
+                          .then((_) {
+                        // 登録完了後、TodoList画面へ遷移
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          "todo_list",
+                          (_) => false,
+                        );
+                      });
+                    }
+                  },
                 ),
-                icon: Icon(Icons.login,
-                    color: Theme.of(context).colorScheme.onPrimary),
-                label: Text(
-                  "新規登録",
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-                ),
-                onPressed: () async {
-                  // インディケーターを表示
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    },
-                  );
-                  // バリデーションチェック
-                  if (registerKey.currentState!.validate()) {
-                    // 登録処理
-                    await ref
-                        .read(authStateProvider.notifier)
-                        .signUp(
-                          emailController.text,
-                          passwordController.text,
-                          githubIdController.text,
-                        )
-                        .then((_) {
-                      // 登録完了後、TodoList画面へ遷移
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                        "todo_list",
-                        (_) => false,
-                      );
-                    });
-                  }
-                },
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
