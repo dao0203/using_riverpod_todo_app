@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -14,6 +15,19 @@ class RegisterScreen extends HookConsumerWidget {
     final confirmPasswordController = useTextEditingController();
     final githubIdController = useTextEditingController();
     final registerKey = GlobalKey<FormState>();
+    final errorText = useState('');
+    void showErrorText(FirebaseAuthException error) {
+      if (error.code == 'user-not-found') {
+        errorText.value = 'ユーザーが見つかりませんでした';
+      } else if (error.code == 'wrong-password') {
+        errorText.value = 'パスワードが間違っています';
+      } else if (error.code == 'network-request-failed') {
+        errorText.value = 'ネットワークエラーが発生しました';
+      } else {
+        errorText.value = error.toString();
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         //バックボタンにカラーをつける
@@ -38,6 +52,12 @@ class RegisterScreen extends HookConsumerWidget {
                 brank16,
                 const Text("新規登録"),
                 brank16,
+                Text(
+                  errorText.value,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.error,
+                  ),
+                ),
                 TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -108,17 +128,17 @@ class RegisterScreen extends HookConsumerWidget {
                         color: Theme.of(context).colorScheme.onPrimary),
                   ),
                   onPressed: () async {
-                    // インディケーターを表示
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      },
-                    );
                     // バリデーションチェック
                     if (registerKey.currentState!.validate()) {
+                      // インディケーターを表示
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        },
+                      );
                       // 登録処理
                       await ref
                           .read(authStateProvider.notifier)
@@ -127,13 +147,22 @@ class RegisterScreen extends HookConsumerWidget {
                             passwordController.text,
                             githubIdController.text,
                           )
-                          .then((_) {
-                        // 登録完了後、TodoList画面へ遷移
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          "todo_list",
-                          (_) => false,
-                        );
-                      });
+                          .then(
+                        (_) {
+                          // 登録完了後、TodoList画面へ遷移
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            "todo_list",
+                            (_) => false,
+                          );
+                        },
+                      ).onError(
+                        (FirebaseAuthException error, stackTrace) {
+                          // エラー時の処理
+                          showErrorText(error);
+                          // インディケーターを非表示
+                          Navigator.of(context).pop();
+                        },
+                      );
                     }
                   },
                 ),
