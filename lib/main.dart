@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:using_riverpod_todo_app/firebase_options.dart';
 import 'package:using_riverpod_todo_app/ui/screen/auth_gate.dart';
 import 'package:using_riverpod_todo_app/ui/screen/login_screen.dart';
+import 'package:using_riverpod_todo_app/ui/screen/register_screen.dart';
 import 'package:using_riverpod_todo_app/ui/screen/todo_list_screen.dart';
 
 void main() async {
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/login': (context) => const LoginScreen(),
+        '/login/register': (context) => RegisterScreen(),
         '/todo_list': (context) => const TodoListScreen(),
       },
       title: 'Flutter Demo',
