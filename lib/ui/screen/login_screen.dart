@@ -113,7 +113,7 @@ class LoginScreen extends HookConsumerWidget {
                   color: Theme.of(context).colorScheme.onSecondary,
                 ),
                 label: Text(
-                  '新規登録',
+                  '新規登録画面へ',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSecondary,
                   ),
