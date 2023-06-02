@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '../../providers.dart';
+import 'package:using_riverpod_todo_app/providers.dart';
+import 'package:using_riverpod_todo_app/ui/state/auth_notofier.dart';
 import 'login_screen.dart';
 import 'todo_list_screen.dart';
 
@@ -11,17 +12,21 @@ class AuthGate extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(authStateChangesProvider).when(
           data: (user) {
-            if (user == null) {
-              return const LoginScreen();
-            } else {
+            if (user != null) {
               return const TodoListScreen();
+            } else {
+              return const LoginScreen();
             }
           },
-          error: (e, s) => const Center(
-            child: Text('Error'),
+          loading: () => const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
-          loading: () => const Center(
-            child: CircularProgressIndicator(),
+          error: (error, stackTrace) => Scaffold(
+            body: Center(
+              child: Text(error.toString()),
+            ),
           ),
         );
   }
