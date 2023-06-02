@@ -15,7 +15,13 @@ class LoginScreen extends HookConsumerWidget {
     final errorText = useState('');
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Text(
+          'Login',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+        ),
       ),
       body: Form(
         key: loginKey,
@@ -54,7 +60,10 @@ class LoginScreen extends HookConsumerWidget {
                 controller: passwordController,
               ),
               brank8,
-              ElevatedButton(
+              ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                ),
                 onPressed: () async {
                   // インディケーターを表示
                   showDialog(
@@ -76,18 +85,39 @@ class LoginScreen extends HookConsumerWidget {
                             '/todo_list',
                             (_) => false,
                           ),
-                        ).onError((error, stackTrace) => 
-                          errorText.value = error.toString()
-                        );
+                        )
+                        .onError((error, stackTrace) =>
+                            errorText.value = error.toString());
                   }
                 },
-                child: const Text('ログイン'),
+                icon: Icon(
+                  Icons.login,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+                label: Text(
+                  'ログイン',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
+                ),
               ),
-              ElevatedButton(
+              ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                ),
                 onPressed: () {
                   Navigator.of(context).pushNamed('/login/register');
                 },
-                child: const Text('新規登録画面へ'),
+                icon: Icon(
+                  Icons.app_registration,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+                label: Text(
+                  '新規登録',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
+                ),
               ),
             ],
           ),
