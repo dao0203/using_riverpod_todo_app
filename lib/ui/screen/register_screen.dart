@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:using_riverpod_todo_app/providers.dart';
 import '../../utils/const.dart';
 
 class RegisterScreen extends HookConsumerWidget {
@@ -82,6 +83,39 @@ class RegisterScreen extends HookConsumerWidget {
                   icon: Icon(Icons.lock),
                 ),
                 controller: githubIdController,
+              ),
+              brank8,
+              ElevatedButton(
+                onPressed: () async {
+                  // インディケーターを表示
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  );
+                  // バリデーションチェック
+                  if (registerKey.currentState!.validate()) {
+                    // 登録処理
+                    await ref
+                        .read(authStateProvider.notifier)
+                        .signUp(
+                          emailController.text,
+                          passwordController.text,
+                          githubIdController.text,
+                        )
+                        .then((_) {
+                      // 登録完了後、ログイン画面に戻る
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        "todo_list",
+                        (_) => false,
+                      );
+                    });
+                  }
+                },
+                child: const Text("登録"),
               ),
             ],
           ),
