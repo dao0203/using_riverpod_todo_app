@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'account_service.dart';
 
-class AccountServiceImpl extends AccountService {
+class AccountServiceImpl implements AccountService {
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
   AccountServiceImpl(this._auth, this._firestore);

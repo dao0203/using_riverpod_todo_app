@@ -3,7 +3,7 @@ import 'package:using_riverpod_todo_app/data/source/account_service.dart';
 
 import 'data_source_repository.dart';
 
-class DataSourceRepositoryImpl extends DataSourceRepository {
+class DataSourceRepositoryImpl implements DataSourceRepository {
   AccountService _accountService;
   DataSourceRepositoryImpl(this._accountService);
   @override
