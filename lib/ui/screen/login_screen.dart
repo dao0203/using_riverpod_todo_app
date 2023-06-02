@@ -65,14 +65,14 @@ class LoginScreen extends HookConsumerWidget {
                   backgroundColor: Theme.of(context).colorScheme.secondary,
                 ),
                 onPressed: () async {
-                  // インディケーターを表示
-                  showDialog(
-                    context: context,
-                    builder: (_) => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
                   if (loginKey.currentState!.validate()) {
+                    // インディケーターを表示
+                    showDialog(
+                      context: context,
+                      builder: (_) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
                     //新規登録処理
                     await ref
                         .read(firebaseAuthProvider)
