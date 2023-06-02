@@ -22,6 +22,9 @@ class LoginScreen extends HookConsumerWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
+              brank16,
+              const Text("ログイン"),
+              brank16,
               TextFormField(
                 validator: (value) {
                   if (value == null || value.isEmpty) {
