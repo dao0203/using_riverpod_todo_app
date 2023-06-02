@@ -6,6 +6,7 @@ import 'package:using_riverpod_todo_app/ui/screen/auth_gate.dart';
 import 'package:using_riverpod_todo_app/ui/screen/login_screen.dart';
 import 'package:using_riverpod_todo_app/ui/screen/register_screen.dart';
 import 'package:using_riverpod_todo_app/ui/screen/todo_list_screen.dart';
+import 'package:using_riverpod_todo_app/ui/theme/color_schemes.g.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,13 +29,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/login': (context) => const LoginScreen(),
-        '/login/register': (context) => RegisterScreen(),
+        '/login/register': (context) => const RegisterScreen(),
         '/todo_list': (context) => const TodoListScreen(),
       },
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
       home: const AuthGate(null),
     );
   }
