@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Todo {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
 
@@ -30,7 +31,12 @@ abstract class $TodoCopyWith<$Res> {
   factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
       _$TodoCopyWithImpl<$Res, Todo>;
   @useResult
-  $Res call({String id, String title, String description, bool completed});
+  $Res call(
+      {String id,
+      String title,
+      String email,
+      String description,
+      bool completed});
 }
 
 /// @nodoc
@@ -48,6 +54,7 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? email = null,
     Object? description = null,
     Object? completed = null,
   }) {
@@ -59,6 +66,10 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -78,7 +89,12 @@ abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
       __$$_TodoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, String description, bool completed});
+  $Res call(
+      {String id,
+      String title,
+      String email,
+      String description,
+      bool completed});
 }
 
 /// @nodoc
@@ -92,6 +108,7 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? email = null,
     Object? description = null,
     Object? completed = null,
   }) {
@@ -103,6 +120,10 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -118,10 +139,11 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
 
 /// @nodoc
 
-class _$_Todo with DiagnosticableTreeMixin implements _Todo {
+class _$_Todo implements _Todo {
   const _$_Todo(
       {required this.id,
       required this.title,
+      required this.email,
       required this.description,
       required this.completed});
 
@@ -130,24 +152,15 @@ class _$_Todo with DiagnosticableTreeMixin implements _Todo {
   @override
   final String title;
   @override
+  final String email;
+  @override
   final String description;
   @override
   final bool completed;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Todo(id: $id, title: $title, description: $description, completed: $completed)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Todo'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('description', description))
-      ..add(DiagnosticsProperty('completed', completed));
+  String toString() {
+    return 'Todo(id: $id, title: $title, email: $email, description: $description, completed: $completed)';
   }
 
   @override
@@ -157,6 +170,7 @@ class _$_Todo with DiagnosticableTreeMixin implements _Todo {
             other is _$_Todo &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.completed, completed) ||
@@ -165,7 +179,7 @@ class _$_Todo with DiagnosticableTreeMixin implements _Todo {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, title, description, completed);
+      Object.hash(runtimeType, id, title, email, description, completed);
 
   @JsonKey(ignore: true)
   @override
@@ -178,6 +192,7 @@ abstract class _Todo implements Todo {
   const factory _Todo(
       {required final String id,
       required final String title,
+      required final String email,
       required final String description,
       required final bool completed}) = _$_Todo;
 
@@ -185,6 +200,8 @@ abstract class _Todo implements Todo {
   String get id;
   @override
   String get title;
+  @override
+  String get email;
   @override
   String get description;
   @override
