@@ -17,8 +17,8 @@ class _$ProfileService extends ProfileService {
   final definitionType = ProfileService;
 
   @override
-  Future<Response<dynamic>> getProfile(String githubId) {
-    final Uri $url = Uri.parse('https://api.github.com/users/{githubId}');
+  Future<Response<dynamic>> getProfile(String username) {
+    final Uri $url = Uri.parse('https://api.github.com/users/{username}');
     final Request $request = Request(
       'GET',
       $url,

@@ -6,6 +6,6 @@ part 'profile_service.chopper.dart';
 abstract class ProfileService extends ChopperService{
   static ProfileService create() => _$ProfileService(ChopperClient());
 
-  @Get(path: '/users/{githubId}')
-  Future<Response> getProfile(String githubId);
+  @Get(path: '/users/{username}')
+  Future<Response> getProfile(String username);
 }
