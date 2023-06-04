@@ -1,17 +1,19 @@
 import 'dart:convert';
 
-import 'package:chopper/chopper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:using_riverpod_todo_app/data/model/github_profile.dart';
 import 'package:using_riverpod_todo_app/data/source/account_service.dart';
+import 'package:using_riverpod_todo_app/data/source/profile_service.dart';
 
 import '../model/github_api.dart';
 import 'data_source_repository.dart';
 
 class DataSourceRepositoryImpl implements DataSourceRepository {
   final AccountService _accountService;
+  final ProfileService _profileService;
   DataSourceRepositoryImpl(
     this._accountService,
+    this._profileService,
   );
 
   @override
@@ -33,18 +35,6 @@ class DataSourceRepositoryImpl implements DataSourceRepository {
 
   @override
   Future<GithubProfile> getProfile() async {
-    final githubId = await _accountService.getGithubId();
-    return GithubApi.create().getProfile(githubId).then(
-      (response) {
-        if (response.isSuccessful) {
-          //成功時にすべての型をString型で返す
-          final profile = //bodyStringを使用するとエラーが発生する
-              GithubProfile.fromJson(json.decode(response.body));
-          return profile;
-        } else {
-          throw Exception('Failed to load profile');
-        }
-      },
-    );
+    return await _profileService.getProfile();
   }
 }

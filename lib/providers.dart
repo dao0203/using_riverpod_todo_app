@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:using_riverpod_todo_app/data/source/profile_service.dart';
+import 'package:using_riverpod_todo_app/data/source/profile_service_impl.dart';
 import 'package:using_riverpod_todo_app/ui/state/auth_notofier.dart';
 
 import 'data/model/github_profile.dart';
@@ -20,12 +22,19 @@ final accountServiceProvider = Provider<AccountService>((ref) {
       ref.watch(firebaseAuthProvider), ref.watch(firebaseFirestoreProvider));
 });
 
-//Repository
-final dataSourceRepositoryProvider = Provider<DataSourceRepository>((ref) {
-  return DataSourceRepositoryImpl(ref.watch(accountServiceProvider));
+final profileServiceProvider = Provider<ProfileService>((ref) {
+  return ProfileServiceImpl(ref.watch(accountServiceProvider));
 });
 
-final profileProvider = FutureProvider<GithubProfile>((ref) async{
+//Repository
+final dataSourceRepositoryProvider = Provider<DataSourceRepository>((ref) {
+  return DataSourceRepositoryImpl(
+    ref.watch(accountServiceProvider),
+    ref.watch(profileServiceProvider),
+  );
+});
+
+final profileProvider = FutureProvider<GithubProfile>((ref) async {
   return await ref.watch(dataSourceRepositoryProvider).getProfile();
 });
 
