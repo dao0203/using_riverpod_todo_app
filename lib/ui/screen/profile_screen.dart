@@ -27,35 +27,80 @@ class ProfileScreen extends HookConsumerWidget {
       ),
       body: SingleChildScrollView(
         child: Center(
-          child: Padding(
-            padding: padding8,
-            child: profile.when(
-              data: (data) => Column(
+          child: profile.when(
+            data: (data) => Padding(
+              padding: padding8,
+              child: Column(
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(100.0),
                     child: Image.network(
                       'https://github.com/${data.login}.png',
+                      errorBuilder: (context, error, stackTrace) => const Icon(
+                        Icons.error,
+                        size: 200,
+                      ),
+                      loadingBuilder: (context, child, loadingProgress) =>
+                          const Icon(
+                        Icons.account_circle,
+                        size: 200,
+                      ),
                       fit: BoxFit.cover,
                       width: 200,
                       height: 200,
                     ),
                   ),
                   brank16,
-                  //名前を模したアイコン
-                  const Text(
-                    "佐藤佑哉",
-                    style: TextStyle(
+                  //githubの名前
+                  Text(
+                    data.name,
+                    style: const TextStyle(
                       fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  brank16,
+                  //githubのID
+                  Text(
+                    "@${data.login}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  brank16,
+                  //githubの会社名
+                  Text(
+                    data.company,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  brank16,
+                  //githubの場所
+                  Text(
+                    data.location,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  brank16,
+
+                  Text(
+                    data.twitterUsername,
+                    style: const TextStyle(
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   brank16,
                 ],
               ),
-              error: (error, stackTrace) => const Text("エラーが発生しました"),
-              loading: () => const CircularProgressIndicator(),
             ),
+            error: (error, stackTrace) => const Text("エラーが発生しました"),
+            loading: () => const CircularProgressIndicator(),
           ),
         ),
       ),
