@@ -40,15 +40,60 @@ class ProfileScreen extends HookConsumerWidget {
                         Icons.error,
                         size: 200,
                       ),
-                      loadingBuilder: (context, child, loadingProgress) =>
-                          const Icon(
-                        Icons.account_circle,
-                        size: 200,
-                      ),
+                      // loadingBuilder: (context, child, loadingProgress) =>
+                      //     const Icon(
+                      //   Icons.account_circle,
+                      //   size: 200,
+                      // ),
                       fit: BoxFit.cover,
                       width: 200,
                       height: 200,
                     ),
+                  ),
+                  brank16,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          const Text(
+                            "フォロー数",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          brank8,
+                          Text(
+                            data.following.toString(),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      //githubのフォロワー数
+                      Column(
+                        children: [
+                          const Text(
+                            "フォロワー数",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          brank8,
+                          Text(
+                            data.followers.toString(),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                   brank16,
                   //githubの名前
