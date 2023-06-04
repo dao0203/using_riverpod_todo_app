@@ -16,7 +16,6 @@ _$_GithubProfile _$$_GithubProfileFromJson(Map<String, dynamic> json) =>
       twitterUsername: json['twitter_username'] as String? ?? 'N/A',
       followers: json['followers'] as int? ?? -1,
       following: json['following'] as int? ?? -1,
-      twitterId: json['twitter_id'] as String? ?? 'N/A',
     );
 
 Map<String, dynamic> _$$_GithubProfileToJson(_$_GithubProfile instance) =>
@@ -29,5 +28,4 @@ Map<String, dynamic> _$$_GithubProfileToJson(_$_GithubProfile instance) =>
       'twitter_username': instance.twitterUsername,
       'followers': instance.followers,
       'following': instance.following,
-      'twitter_id': instance.twitterId,
     };

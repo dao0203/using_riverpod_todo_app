@@ -15,7 +15,6 @@ class GithubProfile with _$GithubProfile {
         required String twitterUsername,
     @JsonKey(name: 'followers', defaultValue: -1) required int followers,
     @JsonKey(name: 'following', defaultValue: -1) required int following,
-    @JsonKey(name: 'twitter_id', defaultValue: "N/A") required String twitterId,
   }) = _GithubProfile;
 
   factory GithubProfile.fromJson(Map<String, dynamic> json) =>
