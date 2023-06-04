@@ -6,14 +6,15 @@ part 'github_profile.g.dart';
 @freezed
 class GithubProfile with _$GithubProfile {
   const factory GithubProfile({
-    @JsonKey(name: 'id', defaultValue: "N/A") required String id,
+    @JsonKey(name: 'login', defaultValue: "N/A") required String login,
+    @JsonKey(name: 'id', defaultValue: -1) required int id,
     @JsonKey(name: 'name', defaultValue: "N/A") required String name,
     @JsonKey(name: 'company', defaultValue: "N/A") required String company,
     @JsonKey(name: 'location', defaultValue: "N/A") required String location,
     @JsonKey(name: 'twitter_username', defaultValue: "N/A")
         required String twitterUsername,
-    @JsonKey(name: 'followers', defaultValue: 0) required int followers,
-    @JsonKey(name: 'following', defaultValue: 0) required int following,
+    @JsonKey(name: 'followers', defaultValue: -1) required int followers,
+    @JsonKey(name: 'following', defaultValue: -1) required int following,
     @JsonKey(name: 'twitter_id', defaultValue: "N/A") required String twitterId,
   }) = _GithubProfile;
 

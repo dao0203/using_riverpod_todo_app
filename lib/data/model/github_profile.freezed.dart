@@ -20,8 +20,10 @@ GithubProfile _$GithubProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GithubProfile {
-  @JsonKey(name: 'id', defaultValue: "N/A")
-  String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'login', defaultValue: "N/A")
+  String get login => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id', defaultValue: -1)
+  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name', defaultValue: "N/A")
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'company', defaultValue: "N/A")
@@ -30,9 +32,9 @@ mixin _$GithubProfile {
   String get location => throw _privateConstructorUsedError;
   @JsonKey(name: 'twitter_username', defaultValue: "N/A")
   String get twitterUsername => throw _privateConstructorUsedError;
-  @JsonKey(name: 'followers', defaultValue: 0)
+  @JsonKey(name: 'followers', defaultValue: -1)
   int get followers => throw _privateConstructorUsedError;
-  @JsonKey(name: 'following', defaultValue: 0)
+  @JsonKey(name: 'following', defaultValue: -1)
   int get following => throw _privateConstructorUsedError;
   @JsonKey(name: 'twitter_id', defaultValue: "N/A")
   String get twitterId => throw _privateConstructorUsedError;
@@ -50,8 +52,10 @@ abstract class $GithubProfileCopyWith<$Res> {
       _$GithubProfileCopyWithImpl<$Res, GithubProfile>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id', defaultValue: "N/A")
-          String id,
+      {@JsonKey(name: 'login', defaultValue: "N/A")
+          String login,
+      @JsonKey(name: 'id', defaultValue: -1)
+          int id,
       @JsonKey(name: 'name', defaultValue: "N/A")
           String name,
       @JsonKey(name: 'company', defaultValue: "N/A")
@@ -60,9 +64,9 @@ abstract class $GithubProfileCopyWith<$Res> {
           String location,
       @JsonKey(name: 'twitter_username', defaultValue: "N/A")
           String twitterUsername,
-      @JsonKey(name: 'followers', defaultValue: 0)
+      @JsonKey(name: 'followers', defaultValue: -1)
           int followers,
-      @JsonKey(name: 'following', defaultValue: 0)
+      @JsonKey(name: 'following', defaultValue: -1)
           int following,
       @JsonKey(name: 'twitter_id', defaultValue: "N/A")
           String twitterId});
@@ -81,6 +85,7 @@ class _$GithubProfileCopyWithImpl<$Res, $Val extends GithubProfile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? login = null,
     Object? id = null,
     Object? name = null,
     Object? company = null,
@@ -91,10 +96,14 @@ class _$GithubProfileCopyWithImpl<$Res, $Val extends GithubProfile>
     Object? twitterId = null,
   }) {
     return _then(_value.copyWith(
+      login: null == login
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
+              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -136,8 +145,10 @@ abstract class _$$_GithubProfileCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id', defaultValue: "N/A")
-          String id,
+      {@JsonKey(name: 'login', defaultValue: "N/A")
+          String login,
+      @JsonKey(name: 'id', defaultValue: -1)
+          int id,
       @JsonKey(name: 'name', defaultValue: "N/A")
           String name,
       @JsonKey(name: 'company', defaultValue: "N/A")
@@ -146,9 +157,9 @@ abstract class _$$_GithubProfileCopyWith<$Res>
           String location,
       @JsonKey(name: 'twitter_username', defaultValue: "N/A")
           String twitterUsername,
-      @JsonKey(name: 'followers', defaultValue: 0)
+      @JsonKey(name: 'followers', defaultValue: -1)
           int followers,
-      @JsonKey(name: 'following', defaultValue: 0)
+      @JsonKey(name: 'following', defaultValue: -1)
           int following,
       @JsonKey(name: 'twitter_id', defaultValue: "N/A")
           String twitterId});
@@ -165,6 +176,7 @@ class __$$_GithubProfileCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? login = null,
     Object? id = null,
     Object? name = null,
     Object? company = null,
@@ -175,10 +187,14 @@ class __$$_GithubProfileCopyWithImpl<$Res>
     Object? twitterId = null,
   }) {
     return _then(_$_GithubProfile(
+      login: null == login
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
+              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -215,7 +231,9 @@ class __$$_GithubProfileCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GithubProfile implements _GithubProfile {
   const _$_GithubProfile(
-      {@JsonKey(name: 'id', defaultValue: "N/A")
+      {@JsonKey(name: 'login', defaultValue: "N/A")
+          required this.login,
+      @JsonKey(name: 'id', defaultValue: -1)
           required this.id,
       @JsonKey(name: 'name', defaultValue: "N/A")
           required this.name,
@@ -225,9 +243,9 @@ class _$_GithubProfile implements _GithubProfile {
           required this.location,
       @JsonKey(name: 'twitter_username', defaultValue: "N/A")
           required this.twitterUsername,
-      @JsonKey(name: 'followers', defaultValue: 0)
+      @JsonKey(name: 'followers', defaultValue: -1)
           required this.followers,
-      @JsonKey(name: 'following', defaultValue: 0)
+      @JsonKey(name: 'following', defaultValue: -1)
           required this.following,
       @JsonKey(name: 'twitter_id', defaultValue: "N/A")
           required this.twitterId});
@@ -236,8 +254,11 @@ class _$_GithubProfile implements _GithubProfile {
       _$$_GithubProfileFromJson(json);
 
   @override
-  @JsonKey(name: 'id', defaultValue: "N/A")
-  final String id;
+  @JsonKey(name: 'login', defaultValue: "N/A")
+  final String login;
+  @override
+  @JsonKey(name: 'id', defaultValue: -1)
+  final int id;
   @override
   @JsonKey(name: 'name', defaultValue: "N/A")
   final String name;
@@ -251,10 +272,10 @@ class _$_GithubProfile implements _GithubProfile {
   @JsonKey(name: 'twitter_username', defaultValue: "N/A")
   final String twitterUsername;
   @override
-  @JsonKey(name: 'followers', defaultValue: 0)
+  @JsonKey(name: 'followers', defaultValue: -1)
   final int followers;
   @override
-  @JsonKey(name: 'following', defaultValue: 0)
+  @JsonKey(name: 'following', defaultValue: -1)
   final int following;
   @override
   @JsonKey(name: 'twitter_id', defaultValue: "N/A")
@@ -262,7 +283,7 @@ class _$_GithubProfile implements _GithubProfile {
 
   @override
   String toString() {
-    return 'GithubProfile(id: $id, name: $name, company: $company, location: $location, twitterUsername: $twitterUsername, followers: $followers, following: $following, twitterId: $twitterId)';
+    return 'GithubProfile(login: $login, id: $id, name: $name, company: $company, location: $location, twitterUsername: $twitterUsername, followers: $followers, following: $following, twitterId: $twitterId)';
   }
 
   @override
@@ -270,6 +291,7 @@ class _$_GithubProfile implements _GithubProfile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GithubProfile &&
+            (identical(other.login, login) || other.login == login) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.company, company) || other.company == company) &&
@@ -287,8 +309,8 @@ class _$_GithubProfile implements _GithubProfile {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, company, location,
-      twitterUsername, followers, following, twitterId);
+  int get hashCode => Object.hash(runtimeType, login, id, name, company,
+      location, twitterUsername, followers, following, twitterId);
 
   @JsonKey(ignore: true)
   @override
@@ -306,8 +328,10 @@ class _$_GithubProfile implements _GithubProfile {
 
 abstract class _GithubProfile implements GithubProfile {
   const factory _GithubProfile(
-      {@JsonKey(name: 'id', defaultValue: "N/A")
-          required final String id,
+      {@JsonKey(name: 'login', defaultValue: "N/A")
+          required final String login,
+      @JsonKey(name: 'id', defaultValue: -1)
+          required final int id,
       @JsonKey(name: 'name', defaultValue: "N/A")
           required final String name,
       @JsonKey(name: 'company', defaultValue: "N/A")
@@ -316,9 +340,9 @@ abstract class _GithubProfile implements GithubProfile {
           required final String location,
       @JsonKey(name: 'twitter_username', defaultValue: "N/A")
           required final String twitterUsername,
-      @JsonKey(name: 'followers', defaultValue: 0)
+      @JsonKey(name: 'followers', defaultValue: -1)
           required final int followers,
-      @JsonKey(name: 'following', defaultValue: 0)
+      @JsonKey(name: 'following', defaultValue: -1)
           required final int following,
       @JsonKey(name: 'twitter_id', defaultValue: "N/A")
           required final String twitterId}) = _$_GithubProfile;
@@ -327,8 +351,11 @@ abstract class _GithubProfile implements GithubProfile {
       _$_GithubProfile.fromJson;
 
   @override
-  @JsonKey(name: 'id', defaultValue: "N/A")
-  String get id;
+  @JsonKey(name: 'login', defaultValue: "N/A")
+  String get login;
+  @override
+  @JsonKey(name: 'id', defaultValue: -1)
+  int get id;
   @override
   @JsonKey(name: 'name', defaultValue: "N/A")
   String get name;
@@ -342,10 +369,10 @@ abstract class _GithubProfile implements GithubProfile {
   @JsonKey(name: 'twitter_username', defaultValue: "N/A")
   String get twitterUsername;
   @override
-  @JsonKey(name: 'followers', defaultValue: 0)
+  @JsonKey(name: 'followers', defaultValue: -1)
   int get followers;
   @override
-  @JsonKey(name: 'following', defaultValue: 0)
+  @JsonKey(name: 'following', defaultValue: -1)
   int get following;
   @override
   @JsonKey(name: 'twitter_id', defaultValue: "N/A")
