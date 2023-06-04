@@ -1,5 +1,11 @@
-import '../model/github_profile.dart';
+import 'package:chopper/chopper.dart';
 
-abstract class ProfileService {
-  Future<GithubProfile> getProfile(String githubId);
+part 'profile_service.chopper.dart';
+
+@ChopperApi(baseUrl: 'https://api.github.com')
+abstract class ProfileService extends ChopperService{
+  static ProfileService create() => _$ProfileService(ChopperClient());
+
+  @Get(path: '/users/{githubId}')
+  Future<Response> getProfile(String githubId);
 }
