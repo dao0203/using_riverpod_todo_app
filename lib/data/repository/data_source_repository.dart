@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:using_riverpod_todo_app/data/model/github_profile.dart';
 
 abstract class DataSourceRepository {
   //Firebase Authentification
@@ -7,4 +8,5 @@ abstract class DataSourceRepository {
   Future<void> signOut();
   Stream<User?> isSignedIn();
   User getUser();
+  Future<GithubProfile> getProfile(String githubId);
 }
