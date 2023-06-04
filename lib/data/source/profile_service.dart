@@ -7,5 +7,5 @@ abstract class ProfileService extends ChopperService{
   static ProfileService create() => _$ProfileService(ChopperClient());
 
   @Get(path: '/users/{username}')
-  Future<Response> getProfile(String username);
+  Future<Response> getProfile(@Path('username') String username);
 }
