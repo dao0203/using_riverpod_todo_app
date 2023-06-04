@@ -151,7 +151,7 @@ class RegisterScreen extends HookConsumerWidget {
                         (_) {
                           // 登録完了後、TodoList画面へ遷移
                           Navigator.of(context).pushNamedAndRemoveUntil(
-                            "todo_list",
+                            "/todo_list",
                             (_) => false,
                           );
                         },
