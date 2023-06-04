@@ -8,14 +8,14 @@ part of 'github_profile.dart';
 
 _$_GithubProfile _$$_GithubProfileFromJson(Map<String, dynamic> json) =>
     _$_GithubProfile(
-      id: json['id'] as String? ?? '',
-      name: json['name'] as String? ?? '',
-      company: json['company'] as String? ?? '',
-      location: json['location'] as String? ?? '',
-      twitterUsername: json['twitter_username'] as String? ?? '',
+      id: json['id'] as String? ?? 'N/A',
+      name: json['name'] as String? ?? 'N/A',
+      company: json['company'] as String? ?? 'N/A',
+      location: json['location'] as String? ?? 'N/A',
+      twitterUsername: json['twitter_username'] as String? ?? 'N/A',
       followers: json['followers'] as int? ?? 0,
       following: json['following'] as int? ?? 0,
-      twitterId: json['twitter_id'] as String? ?? '',
+      twitterId: json['twitter_id'] as String? ?? 'N/A',
     );
 
 Map<String, dynamic> _$$_GithubProfileToJson(_$_GithubProfile instance) =>
