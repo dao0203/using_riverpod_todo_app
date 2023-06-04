@@ -6,4 +6,5 @@ abstract class AccountService {
   Future<void> signOut();
   Stream<User?> isSignedIn();
   User getUser();
+  Future<String> getGithubId();  
 }

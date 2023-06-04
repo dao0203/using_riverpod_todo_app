@@ -42,4 +42,11 @@ class AccountServiceImpl implements AccountService {
               {'githubId': githubId},
             ),
           );
+
+  @override
+  Future<String> getGithubId() async {
+    final user = _auth.currentUser!;
+    final doc = await _firestore.collection('users').doc(user.uid).get();
+    return doc.get('githubId') as String;
+  }
 }
