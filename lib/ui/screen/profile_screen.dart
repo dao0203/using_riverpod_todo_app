@@ -96,6 +96,17 @@ class ProfileScreen extends HookConsumerWidget {
                     ],
                   ),
                   brank16,
+                  //githubのbio
+                  Text(
+                    data.bio,
+                    overflow: TextOverflow.clip,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 3,
+                  ),
+                  brank16,
                   //githubの名前
                   Text(
                     data.name,
