@@ -8,5 +8,5 @@ abstract class DataSourceRepository {
   Future<void> signOut();
   Stream<User?> isSignedIn();
   User getUser();
-  Future<GithubProfile> getProfile(String githubId);
+  Future<GithubProfile> getProfile();
 }

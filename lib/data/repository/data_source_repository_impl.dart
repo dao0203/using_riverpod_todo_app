@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:using_riverpod_todo_app/data/model/github_profile.dart';
 import 'package:using_riverpod_todo_app/data/source/account_service.dart';
@@ -7,10 +9,8 @@ import 'data_source_repository.dart';
 
 class DataSourceRepositoryImpl implements DataSourceRepository {
   final AccountService _accountService;
-  final ProfileService _profileService;
   DataSourceRepositoryImpl(
     this._accountService,
-    this._profileService,
   );
 
   @override
@@ -31,7 +31,14 @@ class DataSourceRepositoryImpl implements DataSourceRepository {
       _accountService.signUp(email, password, githubId);
 
   @override
-  Future<GithubProfile> getProfile(String githubId) {
-    throw UnimplementedError();
+  Future<GithubProfile> getProfile() async {
+    final githubId = await _accountService.getGithubId();
+    return ProfileService.create().getProfile(githubId).then(
+      (value) {
+        final map = json.decode(value.body) as Map<String, dynamic>;
+        final profile = GithubProfile.fromJson(map);
+        return profile;
+      },
+    );
   }
 }
