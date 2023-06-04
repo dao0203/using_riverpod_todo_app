@@ -4,8 +4,8 @@ import 'package:chopper/chopper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:using_riverpod_todo_app/data/model/github_profile.dart';
 import 'package:using_riverpod_todo_app/data/source/account_service.dart';
-import 'package:using_riverpod_todo_app/data/source/profile_service.dart';
 
+import '../model/profile_service.dart';
 import 'data_source_repository.dart';
 
 class DataSourceRepositoryImpl implements DataSourceRepository {
