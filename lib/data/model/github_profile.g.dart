@@ -8,6 +8,7 @@ part of 'github_profile.dart';
 
 _$_GithubProfile _$$_GithubProfileFromJson(Map<String, dynamic> json) =>
     _$_GithubProfile(
+      bio: json['bio'] as String? ?? 'N/A',
       login: json['login'] as String? ?? 'N/A',
       id: json['id'] as int? ?? -1,
       name: json['name'] as String? ?? 'N/A',
@@ -20,6 +21,7 @@ _$_GithubProfile _$$_GithubProfileFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_GithubProfileToJson(_$_GithubProfile instance) =>
     <String, dynamic>{
+      'bio': instance.bio,
       'login': instance.login,
       'id': instance.id,
       'name': instance.name,

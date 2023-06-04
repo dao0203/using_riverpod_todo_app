@@ -20,6 +20,8 @@ GithubProfile _$GithubProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GithubProfile {
+  @JsonKey(name: 'bio', defaultValue: "N/A")
+  String get bio => throw _privateConstructorUsedError;
   @JsonKey(name: 'login', defaultValue: "N/A")
   String get login => throw _privateConstructorUsedError;
   @JsonKey(name: 'id', defaultValue: -1)
@@ -50,7 +52,9 @@ abstract class $GithubProfileCopyWith<$Res> {
       _$GithubProfileCopyWithImpl<$Res, GithubProfile>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'login', defaultValue: "N/A")
+      {@JsonKey(name: 'bio', defaultValue: "N/A")
+          String bio,
+      @JsonKey(name: 'login', defaultValue: "N/A")
           String login,
       @JsonKey(name: 'id', defaultValue: -1)
           int id,
@@ -81,6 +85,7 @@ class _$GithubProfileCopyWithImpl<$Res, $Val extends GithubProfile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? bio = null,
     Object? login = null,
     Object? id = null,
     Object? name = null,
@@ -91,6 +96,10 @@ class _$GithubProfileCopyWithImpl<$Res, $Val extends GithubProfile>
     Object? following = null,
   }) {
     return _then(_value.copyWith(
+      bio: null == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String,
       login: null == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
@@ -136,7 +145,9 @@ abstract class _$$_GithubProfileCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'login', defaultValue: "N/A")
+      {@JsonKey(name: 'bio', defaultValue: "N/A")
+          String bio,
+      @JsonKey(name: 'login', defaultValue: "N/A")
           String login,
       @JsonKey(name: 'id', defaultValue: -1)
           int id,
@@ -165,6 +176,7 @@ class __$$_GithubProfileCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? bio = null,
     Object? login = null,
     Object? id = null,
     Object? name = null,
@@ -175,6 +187,10 @@ class __$$_GithubProfileCopyWithImpl<$Res>
     Object? following = null,
   }) {
     return _then(_$_GithubProfile(
+      bio: null == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String,
       login: null == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
@@ -215,7 +231,9 @@ class __$$_GithubProfileCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GithubProfile implements _GithubProfile {
   const _$_GithubProfile(
-      {@JsonKey(name: 'login', defaultValue: "N/A")
+      {@JsonKey(name: 'bio', defaultValue: "N/A")
+          required this.bio,
+      @JsonKey(name: 'login', defaultValue: "N/A")
           required this.login,
       @JsonKey(name: 'id', defaultValue: -1)
           required this.id,
@@ -235,6 +253,9 @@ class _$_GithubProfile implements _GithubProfile {
   factory _$_GithubProfile.fromJson(Map<String, dynamic> json) =>
       _$$_GithubProfileFromJson(json);
 
+  @override
+  @JsonKey(name: 'bio', defaultValue: "N/A")
+  final String bio;
   @override
   @JsonKey(name: 'login', defaultValue: "N/A")
   final String login;
@@ -262,7 +283,7 @@ class _$_GithubProfile implements _GithubProfile {
 
   @override
   String toString() {
-    return 'GithubProfile(login: $login, id: $id, name: $name, company: $company, location: $location, twitterUsername: $twitterUsername, followers: $followers, following: $following)';
+    return 'GithubProfile(bio: $bio, login: $login, id: $id, name: $name, company: $company, location: $location, twitterUsername: $twitterUsername, followers: $followers, following: $following)';
   }
 
   @override
@@ -270,6 +291,7 @@ class _$_GithubProfile implements _GithubProfile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GithubProfile &&
+            (identical(other.bio, bio) || other.bio == bio) &&
             (identical(other.login, login) || other.login == login) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
@@ -286,7 +308,7 @@ class _$_GithubProfile implements _GithubProfile {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, login, id, name, company,
+  int get hashCode => Object.hash(runtimeType, bio, login, id, name, company,
       location, twitterUsername, followers, following);
 
   @JsonKey(ignore: true)
@@ -305,7 +327,9 @@ class _$_GithubProfile implements _GithubProfile {
 
 abstract class _GithubProfile implements GithubProfile {
   const factory _GithubProfile(
-      {@JsonKey(name: 'login', defaultValue: "N/A")
+      {@JsonKey(name: 'bio', defaultValue: "N/A")
+          required final String bio,
+      @JsonKey(name: 'login', defaultValue: "N/A")
           required final String login,
       @JsonKey(name: 'id', defaultValue: -1)
           required final int id,
@@ -325,6 +349,9 @@ abstract class _GithubProfile implements GithubProfile {
   factory _GithubProfile.fromJson(Map<String, dynamic> json) =
       _$_GithubProfile.fromJson;
 
+  @override
+  @JsonKey(name: 'bio', defaultValue: "N/A")
+  String get bio;
   @override
   @JsonKey(name: 'login', defaultValue: "N/A")
   String get login;

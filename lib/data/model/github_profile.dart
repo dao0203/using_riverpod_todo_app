@@ -6,6 +6,7 @@ part 'github_profile.g.dart';
 @freezed
 class GithubProfile with _$GithubProfile {
   const factory GithubProfile({
+    @JsonKey(name: 'bio', defaultValue: "N/A") required String bio,
     @JsonKey(name: 'login', defaultValue: "N/A") required String login,
     @JsonKey(name: 'id', defaultValue: -1) required int id,
     @JsonKey(name: 'name', defaultValue: "N/A") required String name,
